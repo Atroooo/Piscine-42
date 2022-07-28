@@ -6,7 +6,7 @@
 /*   By: lcompieg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 10:51:20 by lcompieg          #+#    #+#             */
-/*   Updated: 2022/07/18 10:32:19 by lcompieg         ###   ########lyon.fr   */
+/*   Updated: 2022/07/26 14:10:48 by lcompieg         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
@@ -69,7 +69,7 @@ void	ft_putnbrbase_all(int nbr, char *base)
 	}
 }
 
-void	ft_putnbrbase(int nbr, char *base)
+void	ft_putnbr_base(int nbr, char *base)
 {
 	long int	nbtemp;
 

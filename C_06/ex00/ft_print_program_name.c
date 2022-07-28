@@ -6,7 +6,7 @@
 /*   By: lcompieg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 10:15:39 by lcompieg          #+#    #+#             */
-/*   Updated: 2022/07/14 22:30:27 by lcompieg         ###   ########lyon.fr   */
+/*   Updated: 2022/07/28 03:43:56 by lcompieg         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
@@ -26,5 +26,7 @@ void ft_print_program_name(char *argv)
 
 int main(int argc, char *argv[])
 {
+	(void) argc;
 	ft_print_program_name(argv[0]);
+	write(1, "\n", 1);
 }

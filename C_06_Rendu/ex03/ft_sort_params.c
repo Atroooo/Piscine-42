@@ -6,61 +6,67 @@
 /*   By: lcompieg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 22:44:57 by lcompieg          #+#    #+#             */
-/*   Updated: 2022/07/18 18:32:48 by lcompieg         ###   ########lyon.fr   */
+/*   Updated: 2022/07/28 06:43:12 by lcompieg         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
+#include <stdio.h>
 
-void	ft_print(char *argv)
+void	ft_putchar(char c)
 {
-	int	i;
-
-	i = 0;
-	while (argv[i])
-	{
-		write(1, &argv[i], 1);
-		i++;
-	}
-	write(1, " ", 1);
+	write(1, &c, 1);
 }
 
 int	ft_strcmp(char *s1, char *s2)
 {
 	int	i;
 
-	i = 0 ;
-	while (s1[i] && s2[i] && s1[i] == s2[i])
+	i = 0;
+	while (s1[i])
+	{
+		if (s1[i] > s2[i])
+			return (s1[i] - s2[i]);
+		else if (s1[i] < s2[i])
+			return (s1[i] - s2[i]);
 		i++;
-	if (s1[i] > s2[i])
-		return (1);
-	else if (s1[i] == s2[i])
-		return (0);
-	return (-1);
+	}
+	return (0);
+}
+
+void	ft_putstr(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		ft_putchar(str[i]);
+		i++;
+	}
 }
 
 int	main(int argc, char **argv)
 {
 	int		i;
-	int		j;
-	char	*min;
+	int		y;
+	char	*temp;
 
 	i = 1;
-	j = 1;
 	while (i < argc)
 	{
-		while (j < argc)
+		y = i + 1;
+		while (y < argc)
 		{
-			if (ft_strcmp(argv[i], argv[j]) > 0)
+			if (ft_strcmp(argv[i], argv[y]) > 0)
 			{
-				min = argv[j];
-				(argv[j]) = (argv[i]);
-				(argv[i]) = min;
+				temp = argv[i];
+				argv[i] = argv[y];
+				argv[y] = temp;
 			}
-			j++;
+			y++;
 		}
-		ft_print(argv[i]);
+		ft_putstr(argv[i]);
+		ft_putchar('\n');
 		i++;
-		j = i + 1;
 	}
-	return (0);
 }

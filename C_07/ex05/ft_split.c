@@ -6,14 +6,14 @@
 /*   By: lcompieg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 22:22:42 by lcompieg          #+#    #+#             */
-/*   Updated: 2022/07/19 23:16:06 by lcompieg         ###   ########lyon.fr   */
+/*   Updated: 2022/07/28 14:58:24 by lcompieg         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <stdio.h>
 
-int	ft_str_len(char *str)
+int	ft_strlen(char *str)
 {
 	int	i;
 
@@ -70,7 +70,7 @@ int	check_word(char *str, char *charset)
 		}
 		i++;
 	}
-	if (ft_str_len(str) == 0)
+	if (ft_strlen(str) == 0)
 		return (0);
 	return (1);
 }
@@ -85,14 +85,14 @@ char	**ft_split(char *str, char *charset)
 	i = 0;
 	j = 0;
 	k = -1;
-	str_split = malloc(sizeof(char *) * ft_str_len(str));
+	str_split = malloc(sizeof(char *) * ft_strlen(str));
 	while (str[i] + 1 != '\0')
 	{
 		if (check_charset(str[i], charset) || str[i + 1] == '\0')
 		{
-			str_split[j] = malloc(sizeof(char) + i * 10);
+			str_split[j] = malloc(sizeof(char) * ft_strlen(str));
 			ft_strncat(str_split[j], str, k + 1, i + 1);
-			if(check_word(str_split[j], charset))
+			if (check_word(str_split[j], charset))
 				j++;
 			k = i;
 		}
@@ -100,18 +100,4 @@ char	**ft_split(char *str, char *charset)
 	}
 	str_split[j] = NULL;
 	return (str_split);
-}
-
-int main(void)
-{
-	char *str = " J'aime les nouilles , mais je prefere le poney \n Yes Daddy";
-	char *charset = " ,\n";
-	char **all_words = ft_split(str, charset);
-	int index = 0;
-	while (all_words[index])
-	{
-		printf("%s\n",all_words[index]);
-		index++;
-	}
-	return (0);
 }

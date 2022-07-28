@@ -6,7 +6,7 @@
 /*   By: lcompieg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 14:48:57 by lcompieg          #+#    #+#             */
-/*   Updated: 2022/07/18 22:13:17 by lcompieg         ###   ########lyon.fr   */
+/*   Updated: 2022/07/21 17:34:01 by lcompieg         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*ft_strdup(char *src)
 	char *str;
 	int i;
 
-	str = malloc(sizeof(char*));
+	str = malloc(sizeof(char) * str_len(src));
 	i = 0;
 	while (src[i])
 	{

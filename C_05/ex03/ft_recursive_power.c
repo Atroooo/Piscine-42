@@ -6,7 +6,7 @@
 /*   By: lcompieg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 18:21:37 by lcompieg          #+#    #+#             */
-/*   Updated: 2022/07/18 13:27:19 by lcompieg         ###   ########lyon.fr   */
+/*   Updated: 2022/07/27 08:41:31 by lcompieg         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,5 @@ int ft_recursive_power(int nb, int power)
 #include <stdio.h>
 int main()
 {
-	printf("%d", ft_recursive_power(10, 20));
+	printf("%d", ft_recursive_power(10, 0));
 }

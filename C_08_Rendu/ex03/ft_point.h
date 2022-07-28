@@ -6,17 +6,17 @@
 /*   By: lcompieg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 04:04:08 by lcompieg          #+#    #+#             */
-/*   Updated: 2022/07/20 04:22:40 by lcompieg         ###   ########lyon.fr   */
+/*   Updated: 2022/07/28 11:16:54 by lcompieg         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_POINT_H
 # define FT_POINT_H
 
-typedef	union
+typedef struct s_point
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 }	t_point;
 
 #endif

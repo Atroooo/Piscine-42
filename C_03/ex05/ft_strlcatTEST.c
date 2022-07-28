@@ -6,44 +6,81 @@
 /*   By: lcompieg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 14:11:40 by lcompieg          #+#    #+#             */
-/*   Updated: 2022/07/17 22:45:07 by lcompieg         ###   ########lyon.fr   */
+/*   Updated: 2022/07/27 15:08:16 by lcompieg         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
  
-unsigned int ft_strlcat(char *dest, char *src, unsigned int size)
+int	ft_strlen(char *str)
 {
-	unsigned int destlen;
-	unsigned int srclen;
-	unsigned int index;
+	int	i;
 
-	destlen = 0;
-	index = 0;
-	while (dest[destlen] && destlen < size)
-		destlen++;
-	while (src[srclen])
-		srclen++;
-	while (src[index] && (destlen + index) < size - 1)
-	{
-		dest[destlen + index] = src[index];
-		index++;
-	}
-	if (src[index] == '\0')
-		dest[destlen + index] = '\0';
-	return (destlen+srclen);
+	i = 0;
+	while (str[i] != '\0')
+		i++;
+	return (i);
 }
-  
+
+unsigned int	ft_strlcat(char *dest, char *src, unsigned int size)
+{
+	unsigned int	dest_len;
+	unsigned int	src_len;
+	int				i;
+	int				j;
+
+	dest_len = ft_strlen(dest);
+	src_len = ft_strlen(src);
+	i = 0;
+	if (size < dest_len)
+		return (size + src_len);
+	while (dest[i] != '\0' && size > 0)
+	{
+		i++;
+		size--;
+	}
+	j = 0;
+	while (src[j] != '\0' && size > 1)
+	{
+		dest[i + j] = src[j];
+		size--;
+		j++;
+	}
+	if (size > 0)
+		dest[i + j] = '\0';
+	return (dest_len + src_len);
+}
+
 #include <stdio.h>
 #include <string.h>
+#include <unistd.h>
+
+void print_char(char *str)
+{
+    int i = 0 ;
+    while(i < 40)
+    {
+        if (str[i] <= 31)
+            write(1,".",1);
+        else
+            write(1,&str[i],1);
+        i++;
+    }
+}
 
 int main()
 {
-	char str1[30] = "";
-	char str2[30] = "test";
-	printf("%u ", ft_strlcat(str1, str2,10));
-	printf("%s\n", str1);
+    char dest1[30] = "012312";
+    char src1[40] = "123456789";
+    int size = 3 ;
+    printf("%lu\n",strlcat(dest1 ,src1,size));
 
-	char str1bis[30] = "";
-	char str2bis[30] = "test";
-	printf("%lu ", strlcat(str1bis, str2bis,10));
-	printf("%s", str1bis);
+    print_char(dest1);
+    printf("\n");
+
+    char dest2[30] = "012312";
+    char src2[40] = "123456789";
+    printf("%u\n",ft_strlcat(dest2 ,src2,size));
+
+    print_char(dest2);
+    printf("\n");
+
 }

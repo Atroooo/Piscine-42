@@ -6,63 +6,76 @@
 /*   By: lcompieg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 18:35:46 by lcompieg          #+#    #+#             */
-/*   Updated: 2022/07/19 15:14:25 by lcompieg         ###   ########lyon.fr   */
+/*   Updated: 2022/07/28 09:42:00 by lcompieg         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include <stdlib.h>
 
-int	ft_str_len(char *str)
+int    ft_strlen(char *str)
 {
-	int	i;
+    int    i;
 
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
+    i = 0;
+    while (str[i])
+        i++;
+    return (i);
 }
 
-char *ft_strcat(char *dest, char *src)
+int    malloc_size(int size, char **strs, char *sep)
 {
-    int len_dest;
-    int len_src;
+    int    i;
+    int    res;
 
-    len_dest = ft_str_len(dest);
-   	len_src = 0;
-    while(src[len_src])
+    if (size == 0)
+        return (1);
+    i = 0;
+    res = 0;
+    while (i < size)
+        res += ft_strlen(strs[i++]);
+    res += ft_strlen(sep) * (size - 1);
+    return (res + 1);
+}
+
+char    *ft_strcat(char *dest, char *src)
+{
+    int    i;
+    int    destlen;
+
+    i = 0;
+    destlen = ft_strlen(dest);
+    while (src[i])
     {
-		
-        dest[len_dest + len_src] = src[len_src];
-        len_src++;
+        dest[destlen + i] = src[i];
+        i++;
     }
-    dest[len_dest + len_src] = '\0';
+    dest[destlen + i] = 0;
     return (dest);
 }
 
-char *ft_strjoin(int size, char **strs, char *sep)
+char    *ft_strjoin(int size, char **strs, char *sep)
 {
-	char *str_c;
-	int i;
-	
-	if (size == 0)
-	{
-		str_c = malloc(1);
-		str_c[0] = 0;
-		return (str_c);
-	}
-	str_c = malloc(sizeof(char*) * size);
-	str_c[0] = 0;
-	i = 0;
-	while (i < size)
-	{
-		ft_strcat(str_c, strs[i]);
-		if (i + 1 < size)
-			ft_strcat(str_c, sep);
-		i++;
-	}
-	return (str_c);
-}
+    char    *res;
+    int        i;
 
+    res = malloc(malloc_size(size, strs, sep) * sizeof(char));
+    if (!res)
+        return (NULL);
+    res[0] = 0;
+    if (size == 0)
+        return (res);
+    i = 0;
+    while (i < size)
+    {
+        ft_strcat(res, strs[i]);
+        if (i != size - 1)
+            ft_strcat(res, sep);
+        i++;
+    }
+    res[ft_strlen(res)] = 0;
+    return (res);
+}
 #include <stdio.h>
 int main()
 {

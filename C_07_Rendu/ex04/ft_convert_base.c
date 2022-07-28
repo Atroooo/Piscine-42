@@ -6,7 +6,7 @@
 /*   By: lcompieg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 22:07:51 by lcompieg          #+#    #+#             */
-/*   Updated: 2022/07/20 00:00:46 by lcompieg         ###   ########lyon.fr   */
+/*   Updated: 2022/07/28 18:27:35 by lcompieg         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*convert_nb_inbase(long int nbr, char *base)
 	char		*nb;
 
 	length = getbase(base);
-	nb = malloc(20);
+	nb = malloc(200000);
 	if (nbr < 0 && checkbase(base) == 1)
 	{
 		nbr *= -1;
@@ -97,7 +97,13 @@ char	*ft_convert_base(char *nbr, char *base_from, char *base_to)
 	else
 	{
 		nbtemp = ft_atoi_base(nbr, base_from);
-		nbr = malloc(20);
+		if (nbtemp == 0)
+		{
+			nbr = malloc(1);
+			nbr[0] = '0';
+			return (nbr);
+		}
+		nbr = malloc(sizeof(char) * getbase(nbr));
 		nbr = convert_nb_inbase(nbtemp, base_to);
 		nbr = ft_rev_tab(nbr);
 	}

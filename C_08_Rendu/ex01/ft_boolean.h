@@ -6,14 +6,14 @@
 /*   By: lcompieg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 02:02:15 by lcompieg          #+#    #+#             */
-/*   Updated: 2022/07/20 03:07:38 by lcompieg         ###   ########lyon.fr   */
+/*   Updated: 2022/07/28 08:57:56 by lcompieg         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_BOOLEAN_H
 # define FT_BOOLEAN_H
 
-# include <unistd.h> 
+# include <unistd.h>
 
 typedef int	t_bool;
 # define EVEN_MSG "I have an even number of arguments.\n"

@@ -6,14 +6,14 @@
 /*   By: lcompieg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 22:22:42 by lcompieg          #+#    #+#             */
-/*   Updated: 2022/07/20 00:01:20 by lcompieg         ###   ########lyon.fr   */
+/*   Updated: 2022/07/28 17:02:06 by lcompieg         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <stdio.h>
 
-int	ft_str_len(char *str)
+int	ft_strlen(char *str)
 {
 	int	i;
 
@@ -70,7 +70,7 @@ int	check_word(char *str, char *charset)
 		}
 		i++;
 	}
-	if (ft_str_len(str) == 0)
+	if (ft_strlen(str) == 0)
 		return (0);
 	return (1);
 }
@@ -85,12 +85,12 @@ char	**ft_split(char *str, char *charset)
 	i = 0;
 	j = 0;
 	k = -1;
-	str_split = malloc(sizeof(char *) * ft_str_len(str));
+	str_split = malloc(sizeof(char *) * ft_strlen(str));
 	while (str[i] + 1 != '\0')
 	{
 		if (check_charset(str[i], charset) || str[i + 1] == '\0')
 		{
-			str_split[j] = malloc(sizeof(char) + i * 10);
+			str_split[j] = malloc(sizeof(char) * (ft_strlen(str) + 1));
 			ft_strncat(str_split[j], str, k + 1, i + 1);
 			if (check_word(str_split[j], charset))
 				j++;

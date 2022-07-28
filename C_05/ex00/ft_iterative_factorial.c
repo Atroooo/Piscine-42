@@ -6,7 +6,7 @@
 /*   By: lcompieg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 16:43:33 by lcompieg          #+#    #+#             */
-/*   Updated: 2022/07/18 11:06:59 by lcompieg         ###   ########lyon.fr   */
+/*   Updated: 2022/07/27 11:57:24 by lcompieg         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdio.h>
@@ -31,5 +31,5 @@ int ft_iterative_factorial(int nb)
 
 int main()
 {
-	printf("%d", ft_iterative_factorial(10));
+	printf("%d", ft_iterative_factorial(0));
 }

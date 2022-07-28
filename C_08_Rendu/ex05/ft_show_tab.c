@@ -6,19 +6,21 @@
 /*   By: lcompieg <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 05:40:45 by lcompieg          #+#    #+#             */
-/*   Updated: 2022/07/21 11:46:09 by lcompieg         ###   ########lyon.fr   */
+/*   Updated: 2022/07/28 15:35:17 by lcompieg         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "ft_stock_str.h"
 #include <unistd.h>
 
-struct s_stock_str *ft_strs_to_tab(int ac, char **av);
+void	ft_putchar(char c)
+{
+	write(1, &c, 1);
+}
 
 void	ft_putstr(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i] != '\0')
@@ -30,49 +32,34 @@ void	ft_putstr(char *str)
 
 void	ft_putnbr(int nb)
 {
-	long int nbtemp;
-	char c;
-
-	nbtemp = nb;
-	if(nbtemp > 0)
+	if (nb == -2147483648)
 	{
-		ft_putnbr(nbtemp / 10);
-		c = (nbtemp % 10) + 48;
-		write(1, &c, 1);
+		write(1, "-2147483648", 11);
+		return ;
 	}
+	if (nb < 0)
+	{
+		nb = nb * -1;
+		ft_putchar('-');
+	}
+	if (nb > 9)
+		ft_putnbr(nb / 10);
+	ft_putchar(nb % 10 + '0');
 }
 
-void ft_show_tab(struct s_stock_str *par)
+void	ft_show_tab(struct s_stock_str *par)
 {
-	int i;
-	char *nb;
+	int	i;
 
 	i = 0;
-	while (par[i].str != '\0')
+	while (par[i].str)
 	{
 		ft_putstr(par[i].str);
-		write(1, "\n", 2);
+		ft_putchar('\n');
 		ft_putnbr(par[i].size);
-		write(1, "\n", 2);
-		ft_putstr(par[i].copy);	
-		write(1, "\n", 2);	
+		ft_putchar('\n');
+		ft_putstr(par[i].copy);
+		ft_putchar('\n');
 		i++;
 	}
-}
-
-#include <stdio.h>
-int main()
-{
-	int ac = 3;
-	char *str0 = "J'adores les nouilles eh oh";
-	char *str1 = "et les gros poneys";
-	char *str2 = "mais surtout les pasteques Egyptiennes";
-	char **av;
-	av = malloc(300);
-	av[0] = str0;
-	av[1] = str1;
-	av[2] = str2;
-	t_stock_str    *all_struct = ft_strs_to_tab(ac, av);
-	ft_show_tab(ft_strs_to_tab(ac, av));
-	return (0);
 }
